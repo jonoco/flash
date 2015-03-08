@@ -1,0 +1,18 @@
+<section> 
+<div class="container">
+	<div class="review">
+		<div class="card-memory">
+			<h1 class="card.memory">{{cards[currentCard].memory}}</h1>
+			<h2 ng-if="currentCard = cards.length">Stack completed!</h2>
+			<h3 ng-show="card.show">{{cards.answer}}</h3>
+		</div>
+		<div class="card-answer">
+			<form name='myform' novalidate>
+				<input class="answer" type="text"  autofocus
+					ng-model="user.answer" ng-keyup="checkAnswer()">	
+				<button class="btn btn-default btn-sm center-block" ng-click="showAnswer()">show the answer</button>
+			</form>
+		</div><!-- card-answer -->
+	</div><!-- review -->
+</div><!-- container -->
+</section>

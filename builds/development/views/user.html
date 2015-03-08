@@ -1,0 +1,28 @@
+<section>
+<div class="container">
+	<div class="user">
+		<div class="user-topbox">
+			<h2>make a new stack</h2>
+			<form class="stack-form" name="myform" 
+						ng-submit="addStack()" novalidate>
+				<input type="text" name="stackName" placeholder="stack name" 
+								ng-model="stackName" ng-required="true">
+				<button class="btn btn-default" type="submit"
+								ng-disabled="myform.$invalid">make stack</button>
+			</form>		
+		</div><!-- user-topbox -->
+
+		<div class="user-stacks">
+			<h2>my stacks</h2>
+			<div class="stack" ng-repeat="(key, stack) in stacks">
+				<h3 class="pull-left">{{stack.name}}</h3>
+				<div class="button-group">
+					<a class="btn btn-danger" role='button' ng-click="deleteStack(stack.$id)">delete</a>
+					<a class="btn btn-default" ng-href="#/stack/{{key}}">edit</a>
+					<a class="btn btn-primary" ng-href="#/review/{{key}}">study</a>
+				</div>
+			</div>
+		</div><!-- user-stacks -->
+	</div><!-- user -->
+</div><!-- container -->
+</section>
