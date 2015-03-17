@@ -1,0 +1,40 @@
+<section>
+<div class="container">
+	<div class="card-edit row">
+		<div class="col-sm-6">
+			<div class="edit-content">
+				<h2>Memory</h2>
+				<p>add text, image, video, ...</p>
+				<div class="form-group">
+					<span>memory:</span>
+					<input type="text" placeholder="I want to remember..." ng-model="card.memory">
+				</div>
+				<div class="form-group">
+					<span>image:</span>
+					<input type="url" placeholder="image http://" ng-model="card.image">
+				</div>
+				<img class="image-responsive" ng-show="card.image" ng-src={{ card.image }}>
+			</div><!-- edit-content -->
+		</div><!-- col-sm-6 -->
+		<div class="col-sm-6">
+			<div class="edit-answer">
+				<h2>Answer</h2>
+				<form name="myform" novalidate
+					ng-submit="addCard()">
+					<div class="form-group">
+						<input type="text" placeholder="answer" 
+							ng-model="card.answer" ng-required="true">
+					</div>
+					<div class="btn-group">
+						<button class="btn btn-primary btn-block" type="submit"
+							ng-disabled="myform.$invalid">confirm</button>
+						<a class="btn btn-default btn-block" type="button" 
+							ng-href="#/{{goBack}}">cancel</a>
+					</div>
+				</form><!-- editCard -->
+				<p class="message" ng-show="message">{{ message }}</p>
+			</div><!-- edit-answer -->
+		</div><!-- col-sm-6 -->
+	</div><!-- card-edit -->
+</div><!-- container -->
+</section>

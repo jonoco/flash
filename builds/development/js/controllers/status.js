@@ -1,23 +1,19 @@
 myApp.controller('StatusController', function(
-  $scope, $rootScope, $firebaseSimpleLogin,
-    $location, Authentication, $firebase, FIREBASE_URL) {
+  $scope, $rootScope, $location, Authentication, $firebaseObject, $firebaseAuth, FIREBASE_URL) {
+
+	var ref = new Firebase( FIREBASE_URL );
+  var authObj = $firebaseAuth( ref );
+  
+  authObj.$onAuth(function( authData ) {
+  	if (authData) {
+  		$scope.loggedIn = true;
+  	} else {
+  		$scope.loggedIn = null;
+  	}
+  });
 
   $scope.logout = function() {
     Authentication.logout();
-    $location.path('/login');
+    $location.path('/welcome');
   } //logout
-
-  $rootScope.$on('$firebaseSimpleLogin:login', function(e, authUser) {
-    var ref = new Firebase(FIREBASE_URL + '/users/' + authUser.uid);
-    var user = $firebase(ref).$asObject();
-
-    user.$loaded().then(function() {
-      $rootScope.currentUser = user;
-    });
-  }); //$firebaseSimpleLogin:login
-
-  $rootScope.$on('$firebaseSimpleLogin:logout', function(e, authUser) {
-    $rootScope.currentUser = null;
-  }); //$firebaseSimpleLogin:logout
-
 }); //StatusController

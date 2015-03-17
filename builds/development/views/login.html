@@ -1,8 +1,7 @@
 <section>
-<div class="login">
+<div class="login box">
   <form name="myform"
-    ng-submit="login()"
-    novalidate>
+    ng-submit="login()" novalidate>
 
     <h1>glad you're back</h1>
     <p>your stacks are waiting for you</p>
@@ -10,7 +9,7 @@
     <p class="error formerror" ng-show="message">{{ message }}</p>
 
     <input type="email" name="email" placeholder="email"
-      ng-model="user.email" ng-required="true">
+      ng-model="user.email" ng-required="true" autofocus>
     <p class="error validationerror"
       ng-show="myform.email.$invalid && myform.email.$touched">
       Must be a valid email</p>

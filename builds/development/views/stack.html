@@ -2,21 +2,22 @@
 <div class="container">
 	<div class="stack-edit">
 		
-		<div class="stack-top">
+		<div class="stack-top box">
 			<h1>{{stackName}}</h1>
-			<a class="btn btn-default" ng-href="#/stack/{{stackId}}/card">add card</a>
+			<a class="btn btn-primary" ng-href="#/review/{{stackId}}">study</a>
+			<a class="btn btn-default" ng-href="#/stack/{{stackId}}/add">add card</a>
 			<a class="btn btn-default" role="button" 
 				confirmation-needed="Do you want to delete the stack?"           
 				ng-click="deleteStack()" >delete stack</a>
 		</div><!-- stack-top -->
 
-		<div class="stack-bottom">
+		<div class="stack-bottom box">
 			<h2>Cards</h2>
 			<div class="card-list" ng-repeat="card in cards">
-				<a class="pull-left btn btn-link" ng-href="#/stack/{{stackId}}/card/{{card.$id}}">
+				<a class="pull-left btn btn-link" ng-href="#/stack/{{stackId}}/edit/{{card.$id}}">
 					{{ card.memory }}</a>
 				<div class="btn-group pull-right">
-					<a class="btn btn-default btn-sm" ng-href="#/stack/{{stackId}}/card/{{card.$id}}">
+					<a class="btn btn-default btn-sm" ng-href="#/stack/{{stackId}}/edit/{{card.$id}}">
 						edit</a>
 					<button class="delete btn btn-default btn-sm" 
 						ng-click="deleteCard(card.$id)">delete</button>

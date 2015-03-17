@@ -1,18 +1,25 @@
 <section> 
 <div class="container">
 	<div class="review">
-		<div class="card-memory">
-			<h1 class="card.memory">{{cards[currentCard].memory}}</h1>
-			<h2 ng-if="currentCard = cards.length">Stack completed!</h2>
-			<h3 ng-show="card.show">{{cards.answer}}</h3>
-		</div>
-		<div class="card-answer">
+		<div class="card-memory box">
+			<h1>{{card.memory}}</h1>
+			<h2 ng-show="card.show">{{card.answer}}</h3>
+			<img class="image-responsive" ng-src={{card.image}}>
+		</div><!-- card-memory -->
+
+		<div class="card-answer box">
 			<form name='myform' novalidate>
 				<input class="answer" type="text"  autofocus
-					ng-model="user.answer" ng-keyup="checkAnswer()">	
-				<button class="btn btn-default btn-sm center-block" ng-click="showAnswer()">show the answer</button>
+					ng-model="answer">	
+				<button class="btn btn-default btn-sm center-block" 
+					ng-click="showAnswer()">
+					show the answer</button>
 			</form>
 		</div><!-- card-answer -->
 	</div><!-- review -->
+	<div class="controls box">
+			<button class="btn btn-default" ng-click="prevCard()" ng-disabled="first">Back</button>
+			<button class="btn btn-default" ng-click="nextCard()" ng-disabled="last">Next</button>
+		</div><!-- controls -->
 </div><!-- container -->
 </section>

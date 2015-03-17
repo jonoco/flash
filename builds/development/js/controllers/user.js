@@ -1,35 +1,34 @@
 myApp.controller('UserController', 
-	function($scope, $firebase, $firebaseSimpleLogin, $location, FIREBASE_URL) {
+	function($scope, $rootScope, $firebaseObject, $firebaseArray, $firebaseAuth, $location, FIREBASE_URL) {
 
-	var ref = new Firebase(FIREBASE_URL);
-  var simpleLogin = $firebaseSimpleLogin(ref);
+  var ref = new Firebase( FIREBASE_URL );
+  var authObj = $firebaseAuth( ref );
+  var authData = authObj.$getAuth();
 
-  simpleLogin.$getCurrentUser().then(function(authUser) {
+  if (authData) {
+		var ref = new Firebase(FIREBASE_URL + '/users/' + authData.uid + '/stacks');
+		var stackAry = $firebaseArray(ref);
+    var stackObj = $firebaseObject(ref);
 
-    if (authUser !== null) {
-			var ref = new Firebase(FIREBASE_URL + '/users/' + authUser.uid + '/stacks');
-			var stackInfo = $firebase(ref);
-      var stackObj = $firebase(ref).$asObject();
+    stackObj.$loaded().then(function(data) {
+      $scope.stacks = stackObj;
+    }); // user stacks loaded
 
-      stackObj.$loaded().then(function(data) {
-        $scope.stacks = stackObj;
-      }); // user stacks loaded
+    $scope.deleteStack = function(id) {
+       var stack = new Firebase(FIREBASE_URL + '/users/' + authData.uid + '/stacks/' + id);
+       stack.remove();
+    }
 
-      $scope.deleteStack = function(id) {
-         stackInfo.$remove(id);
-      }
+		$scope.addStack = function() {
+      stackAry.$add({
+        name: $scope.stackName,
+        date: Firebase.ServerValue.TIMESTAMP
+      }).then(function() {
+        $scope.stackName = '';
+      });
+    } // addstack
+	} else {
+    $location.path('/welcome')
+  } // check authentication
 
-			$scope.addStack = function() {
-        stackInfo.$push({
-          name: $scope.stackName,
-          date: Firebase.ServerValue.TIMESTAMP
-        }).then(function() {
-          $scope.stackName = '';
-        });
-      } // addstack
-		} else {
-      $location.path('/welcome')
-    } // redirect guests
-
-	}); // get current user
 });

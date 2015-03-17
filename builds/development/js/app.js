@@ -1,8 +1,8 @@
 var myApp = angular.module('myApp', 
-  ['ngRoute', 'firebase', 'appControllers'])
+  ['ngRoute', 'firebase'])
 .constant('FIREBASE_URL', 'https://flashapp.firebaseio.com/');
 
-var appControllers = angular.module('appControllers', ['firebase']);
+//var appControllers = angular.module('appControllers', ['firebase']);
 
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider
@@ -15,8 +15,7 @@ myApp.config(['$routeProvider', function($routeProvider) {
     controller:  'RegistrationController'
   })
   .when('/welcome', {
-    templateUrl: 'views/welcome.html',
-    controller:  'RegistrationController'  
+    templateUrl: 'views/welcome.html'
   })
   .when('/user', {
     templateUrl: 'views/user.html',
@@ -30,21 +29,13 @@ myApp.config(['$routeProvider', function($routeProvider) {
     templateUrl:  'views/review.html',
     controller:   'ReviewController'
   })
-  .when('/stack/:sId/card', {
-      templateUrl: 'views/card.html',
+  .when('/stack/:sId/add', {
+      templateUrl: 'views/add-card.html',
       controller:  'CardController'
   })
-  .when('/stack/:sId/card/:cId', {
-      templateUrl: 'views/card.html',
+  .when('/stack/:sId/edit/:cId', {
+      templateUrl: 'views/edit-card.html',
       controller:  'CardController'
-  })
-  .when('/checkins/:uId/:mId', {
-      templateUrl: 'views/checkins.html',
-      controller:  'CheckInsController'
-  })
-  .when('/checkins/:uId/:mId/checkinsList', {
-      templateUrl: 'views/checkinslist.html',
-      controller:  'CheckInsController'
   })
   .otherwise({
       redirectTo: '/welcome'

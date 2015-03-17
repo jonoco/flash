@@ -1,49 +1,58 @@
 myApp.controller('CardController', 
-function($scope, $firebase, $location, $routeParams, FIREBASE_URL) {
+function($scope, $firebaseObject, $location, $routeParams, FIREBASE_URL) {
 	
 	$scope.stackId = $routeParams.sId;
-	var cardsRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards');
-
 	$scope.goBack = 'stack/' + $scope.stackId;
 
-	if (typeof $routeParams.cId != 'undefined') {
-		$scope.cardId = $routeParams.cId;
-		var ref = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards/' + $scope.cardId);
-		cardObj = $firebase(ref).$asObject();
+	var ref = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards');
 	
-		cardObj.$loaded().then(function() {
+	if ($routeParams.cId !== 'undefined'){
+		$scope.cardId = $routeParams.cId;
+		var cardRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards/' + $scope.cardId);
+		cardObj = $firebaseObject(ref);
+
+		cardObj.$loaded(function() {
 			$scope.card = cardObj;
 		});
-	
-		$scope.editCard = function() {
-	  		var cardInfo = $firebase(ref);
+	} //editing card
 
-			var myData = {
-				memory: $scope.card.memory,
-				answer: $scope.card.answer,
-				date: Firebase.ServerValue.TIMESTAMP
-			};
-
-			cardInfo.$set(myData).then(function() {
-		    	$location.path('/user');
-		  	});
+	$scope.editCard = function() {
+		if (!$scope.card.image) {
+			$scope.card.image = null;
 		}
-	} else { // editing card
-		$scope.editCard = function() {
-		  	var cardInfo = $firebase(cardsRef);
 
-			var myData = {
-				memory: $scope.card.memory,
-				answer: $scope.card.answer,
-				date: Firebase.ServerValue.TIMESTAMP
-			};
+		var myData = {
+			memory: $scope.card.memory,
+			image: $scope.card.image,
+			answer: $scope.card.answer,
+			date: Firebase.ServerValue.TIMESTAMP
+		};
 
-			cardInfo.$push(myData).then(function() {
-		    	$scope.card.memory = '';
-		    	$scope.card.answer = '';
-		    	$scope.message = 'card added';
-		  	});
+		cardRef.set(myData, function() {
+	    $location.path('/user');
+	  });
+	} //editCard
+
+	$scope.addCard = function() {
+		if (!$scope.card.image) {
+			$scope.card.image = null;
 		}
-	} // adding card
+
+		var myData = {
+			memory: $scope.card.memory,
+			image: $scope.card.image,
+			answer: $scope.card.answer,
+			date: Firebase.ServerValue.TIMESTAMP
+		};
+
+		ref.push(myData, function() {
+    	$scope.card.memory = '';
+    	$scope.card.image = '';
+    	$scope.card.answer = '';
+    	$scope.message = 'card added';
+    	$scope.$apply();
+	  });
+	}// addCard
+	 
 
 });

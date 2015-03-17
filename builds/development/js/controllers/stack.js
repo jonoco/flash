@@ -1,32 +1,36 @@
 myApp.controller('StackController', 
-	function($scope, $rootScope, $firebase, $routeParams, $location, FIREBASE_URL) {
+	function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $routeParams, $location, FIREBASE_URL) {
 	$scope.stackId = $routeParams.sId;
 
-	var user = localStorage.getItem('userId');
-	var stackRef = new Firebase(FIREBASE_URL + '/users/' + user + '/stacks/' + $scope.stackId);
-	var stackObj = $firebase(stackRef).$asObject();
+	var ref = new Firebase( FIREBASE_URL );
+  var authObj = $firebaseAuth( ref );
+  var authData = authObj.$getAuth();
 
-	stackObj.$loaded().then(function(data) {
-		$scope.stackName = stackObj.name;	
-	});
+  if (authData) {
+  	var stackRef = new Firebase(FIREBASE_URL + '/users/' + authData.uid + '/stacks/' + $scope.stackId);
+		var stackObj = $firebaseObject(stackRef);
 
-	var cardsRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards');
-	var cardsArray = $firebase(cardsRef).$asArray();
+		stackObj.$loaded().then(function(data) {
+			$scope.stackName = stackObj.name;	
+		});
 
-	cardsArray.$loaded().then(function(data) {
-		$scope.cards = cardsArray;	
-	});
+		var cardsRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards');
+		var cardsAry = $firebaseArray(cardsRef);
 
-	$scope.deleteStack = function() {
-		var ref = new Firebase(FIREBASE_URL + '/users/' + user + '/stacks');
-		var record = $firebase(ref);
-    	record.$remove($scope.stackId);
-    	$location.path('/user');
+		cardsAry.$loaded().then(function(data) {
+			$scope.cards = cardsAry;	
+		});
 
-	}
+		$scope.deleteStack = function() {
+			var ref = new Firebase(FIREBASE_URL + '/users/' + authData.uid + '/stacks/' + $scope.stackId);
+	    ref.remove();
+	    $location.path('/user');
+		}
 
-	$scope.deleteCard = function(id) {
-		var record = $firebase(cardsRef);
-    	record.$remove(id);
-	}
+		$scope.deleteCard = function( id ) {
+			var record = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards/' + id);
+			record.remove();
+		}
+  } // get authentication
+	
 });

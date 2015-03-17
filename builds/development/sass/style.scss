@@ -1,30 +1,32 @@
-/* Import fonts */
 @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
 
-/* Reset Styles */
+@import 'reset';
 
-ol, ul {
-  list-style: none; }
-
-a img {
-  border: none; 
-}
+$font-stack: Merriweather, serif;
+$primary-color: #FFC107;
+$light-accent: #FFECB3;
+$dark-accent: #FF6F00;
 
 /* Base Styles */
 
 body {
   padding-top: 70px;
-  font-family: Merriweather, serif;
-  font-size: 1em;
+  font: 100% $font-stack;
+  font-size: 1rem;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color: #475b62;
-  text-shadow: 1px 1px rgb(255,255,255, 1);
+  text-shadow: 1px 1px rgba(255,255,255, 1);
 }
 
-.cf {
-  clear: both;
+input {
+  color: #475B62;
+  background: rgba(255,255,255,1);
+  border: 1px solid white;
+  border-radius: 10px;
+  outline: 0;
+  padding: 4px;
 }
 
 /* Alert and Error styles */
@@ -43,10 +45,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .alert {
   margin-top: 10px;
-}
 
-.alert a {
-  margin-left: 20px;
+  a { margin-left: 20px; }
 }
 
 /* Container styles */
@@ -55,24 +55,16 @@ h1, h2, h3, h4, h5, h6 {
   width: 800px;
   margin: 0 auto;
   text-align: center;
+
+  span { font-size: 1.4rem; }
 }
 
-.user-topbox, .user-stacks, .register, .login, .stack-top, .stack-bottom {
+.box {
   background-color: rgba(240, 240, 240, 0.8);
   text-align: center;
   border-radius: 6px;
   box-shadow: 3px;
-}
-
-/* Form Styles */
-
-input {
-  color: #475B62;
-  background: rgba(255,255,255,1);
-  border: 1px solid white;
-  border-radius: 10px;
-  outline: 0;
-  padding: 4px;
+  margin: 10px auto;
 }
 
 /* Buttons */
@@ -91,43 +83,31 @@ input {
  * Page styles
  */
 
-/* Welcome page */
-
-.jumbotron span {
-  font-size: 1.4em;
-} 
-
 /* User page */
 
 .user-topbox {
   padding: 5px;
-  border-radius: 6px;
-  box-shadow: 3px;
 }
 
 .user-stacks {
-  padding-bottom: 20px;
-}
+  padding-bottom: 10px;
 
-.user-stacks a {
+	.btn { 
   margin-top: 8px;
   margin-right: 5px;
   float: right;
+	}
 }
 
 .stack-form input {
-  font-size: 1.2em;
+  font-size: 1.2rem;
   width: 300px;
 }
 
 .stack {
+  @extend .box;
   background-color: rgba(200, 200, 200, 0.8);
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
   padding: 0 15px;
-  border-radius: 6px;
-  box-shadow: 3px;
   height: 50px;
   width: 70%;
 }
@@ -155,67 +135,63 @@ input {
 
 /* Card editing page */
 
-.card-edit {
-  margin-bottom: 30px;
-}
-
-.card-message p {
+.message {
   padding: 5px;
   text-align: center;
-  font-size: 1.4em;
+  font-size: 1.4rem;
   color: #338833;
 }
 
-.edit-content, .edit-controls {
-  background-color: rgba(240, 240, 240, 0.8);
-  height: 400px;
-  min-height: 50px;
-  padding: 10px;
-  text-align: center;
-  border-radius: 6px;
-  box-shadow: 3px;
-}
-
 .edit-content {
-  margin-right: 15px;
+	@extend .box;
+  min-height: 400px;
+  padding: 10px;
+
+	input { width: 200px; }
+	img { height: 300px; }
 }
 
-.edit-content input {
-  width: 200px;
-}
+.edit-answer {
+  @extend .box;
+  height: 400px;
+  padding: 10px;
 
-.card-form input {
-  margin-bottom: 10px;
+  input { margin-bottom: 10px; }
 }
 
 /* Register page */
 
-.register input{
-  width: 300px;
-}
-
-.register label {
-  width: 80px;
+.register {
+	input { width: 300px; }
+	label { width: 80px; }
 }
 
 /* Review page */
 
 .card-memory {
   text-align: center;
+  padding: 10px;
+
+  h2 { color: green; }
+  img {
+  	@extend .img-rounded;
+  	max-height: 300px;
+  }
 }
 
 .card-answer {
   text-align: center;
   border-radius: 6px;
   box-shadow: 3px;
+
+  input {
+	  border: none;
+	  margin-top: 15px;
+	  margin-bottom: 15px;
+	}
+
 }
 
-.card-answer input {
-  border: none;
-  background-color: #eeeeee;
-  margin-top: 15px;
-  margin-bottom: 15px;
-}
-
+.controls button { margin: 0 200px; }
 
 

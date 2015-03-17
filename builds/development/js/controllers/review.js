@@ -1,22 +1,65 @@
 myApp.controller('ReviewController', 
-	function($scope, $firebase, $routeParams, $location, FIREBASE_URL) {
+	function($scope, $firebaseArray, $routeParams, $location, $timeout, FIREBASE_URL) {
 	$scope.stackId = $routeParams.sId;
 
 	var cardsRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards');
-	var cardsArray = $firebase(cardsRef).$asArray();
+	var cardsAry = $firebaseArray(cardsRef);
+	var timeout;
 
-	cardsArray.$loaded().then(function(data) {	
-		$scope.cards = cardsArray;	
-	});
+	$scope.current = 0;
+	$scope.card = {};
+	
+	cardsAry.$loaded().then(function( data ) {	
+		$scope.cards = cardsAry;
 
-	$scope.checkAnswer = function() {
-		if ($scope.cards[$scope.currentCard].answer == $scope.user.answer) {
-			$scope.user.answer = '';
-			$scope.currentCard++;
-		}
+		$scope.$watch('current', function( newVal, oldVal ) {
+			$scope.card = $scope.cards[$scope.current];	
+			
+			if ($scope.current == ($scope.cards.length - 1)) {
+				console.log('last card');
+				$scope.last = true;
+			} else if ($scope.current == 0) {
+				console.log('first card');
+				$scope.first = true;
+			} else {
+				$scope.first = null;
+				$scope.last = null;
+			}
+
+		});
+	}); // cards array loaded
+
+	$scope.$watch('answer', function( userAnswer ) {
+		if (timeout) $timeout.cancel(timeout);
+		timeout = $timeout(function() {
+			checkAnswer();
+		}, 250);
+	}); // call check user answer
+
+	$scope.prevCard = function() {
+		reset();
+		$scope.current--;
+	}
+
+	$scope.nextCard = function() {
+		reset();
+		$scope.current++;
 	}
 
 	$scope.showAnswer = function() {
 		$scope.card.show = true;
 	}
+
+	var checkAnswer = function() {
+		if ($scope.card.answer == $scope.answer) {
+			$scope.showAnswer();
+		}
+	}
+
+	var reset = function() {
+		$scope.card.show = null;
+		$scope.answer = '';
+	}
 });
+
+
