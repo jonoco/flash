@@ -30,8 +30,6 @@ myApp.factory('Authentication',
         var userInfo = {
           date: Firebase.ServerValue.TIMESTAMP,
           regUser: regUser.uid,
-          firstname: user.firstname,
-          lastname: user.lastname,
           email: user.email
         }
         ref.set( userInfo );  

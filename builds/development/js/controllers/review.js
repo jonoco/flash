@@ -13,6 +13,7 @@ myApp.controller('ReviewController',
 		$scope.cards = cardsAry;
 
 		$scope.$watch('current', function( newVal, oldVal ) {
+			reset();
 			$scope.card = $scope.cards[$scope.current];	
 			
 			if ($scope.current == ($scope.cards.length - 1)) {
@@ -25,7 +26,6 @@ myApp.controller('ReviewController',
 				$scope.first = null;
 				$scope.last = null;
 			}
-
 		});
 	}); // cards array loaded
 
@@ -37,29 +37,38 @@ myApp.controller('ReviewController',
 	}); // call check user answer
 
 	$scope.prevCard = function() {
-		reset();
 		$scope.current--;
 	}
 
 	$scope.nextCard = function() {
-		reset();
 		$scope.current++;
 	}
 
-	$scope.showAnswer = function() {
+	$scope.giveUp = function() {
+		showAnswer();
+	}
+
+	var showAnswer = function() {
 		$scope.card.show = true;
 	}
 
 	var checkAnswer = function() {
-		if ($scope.card.answer == $scope.answer) {
-			$scope.showAnswer();
+		if (angular.lowercase($scope.card.answer) == angular.lowercase($scope.answer)) {
+			correctAnswer();
 		}
-	}
+	} //checkAnswer
+
+	var correctAnswer = function() {
+		showAnswer();
+		$timeout(function() {
+			$scope.nextCard();
+		}, 3000);
+	} //correctAnswer
 
 	var reset = function() {
 		$scope.card.show = null;
 		$scope.answer = '';
-	}
+	} //reset
 });
 
 

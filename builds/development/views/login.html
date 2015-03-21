@@ -1,28 +1,37 @@
 <section>
-<div class="login box">
-  <form name="myform"
-    ng-submit="login()" novalidate>
+<div class="container">
+  <div class="login box">
+    <form name="myform" 
+      ng-submit="login()" novalidate>
 
-    <h1>glad you're back</h1>
-    <p>your stacks are waiting for you</p>
+      <h1>glad you're back</h1>
+      <p>your stacks are waiting for you</p>
 
-    <p class="error formerror" ng-show="message">{{ message }}</p>
+      <p class="error formerror" ng-show="message">{{ message }}</p>
+      <div class="form-group">
+        <label for="loginEmail">Email</label>
+        <input type="email" name="email" placeholder="Email" class="form-control" id="loginEmail"
+          ng-model="user.email" 
+          ng-required="true" autofocus>
+        <p class="error validationerror"
+          ng-show="myform.email.$invalid && myform.email.$touched">
+          Must be a valid email</p>
+      </div><!-- form-group -->
 
-    <input type="email" name="email" placeholder="email"
-      ng-model="user.email" ng-required="true" autofocus>
-    <p class="error validationerror"
-      ng-show="myform.email.$invalid && myform.email.$touched">
-      Must be a valid email</p>
-    
-    <input type="password" name="password" placeholder="password"
-      ng-model="user.password" ng-required="true">
-    <p class="error validationerror"
-      ng-show="myform.password.$invalid && myform.password.$touched">
-      password is required</p>
+      <div class="form-group">
+        <label for="loginPass">Password</label>
+        <input type="password" name="password" placeholder="Password" class="form-control" id="loginPass"
+          ng-model="user.password" 
+          ng-required="true">
+        <p class="error validationerror"
+          ng-show="myform.password.$invalid && myform.password.$touched">
+          Password is required</p>
+      </div><!-- form-group -->
 
-    <button type="submit" class="btn btn-default"
-      ng-disabled="myform.$invalid">Login</button>
-    <p>or <a href="#/register">register</a></p>
-  </form>
+      <button type="submit" class="btn btn-primary"
+        ng-disabled="myform.$invalid">Login</button>
+      <p>or <a href="#/register">register</a></p>
+    </form>
+  </div>
 </div>
 </section>

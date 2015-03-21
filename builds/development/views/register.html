@@ -2,56 +2,40 @@
 <div class="container">
   <div class="register">
     <form name="myform"
-      class="form form-register"
       ng-submit="register()"
       novalidate>
 
-      <h1>register</h1>
+      <h1>Register</h1>
 
       <p class="error" ng-show="message">{{ message }}</p>
 
       <div class="form-group">
-        <label for="firstname" class="">first name</label>
-        <input type="firstname" name="firstname" placeholder="first name" id="firstname"
-          ng-model="user.firstname" ng-required="true">
-        <p class="error"
-          ng-show="myform.firstname.$invalid && myform.firstname.$touched">first name is required</p>
-      </div>
-
-      <div class="form-group">
-        <label for="lastname">last name</label>
-        <input type="lastname" name="lastname" placeholder="last name" id="lastname"
-          ng-model="user.lastname" ng-required="true">
-        <p class="error"
-          ng-show="myform.lastname.$invalid && myform.lastname.$touched">last name is required</p>
-      </div>
-
-      <div class="form-group">
-        <label for="email">email</label>
-        <input type="email" name="email" placeholder="email" id="email"
+        <label for="regEmail">email</label>
+        <input type="email" name="email" placeholder="Email" class="form-control" id="regEmail"
           ng-model="user.email" ng-required="true">
         <p class="error"
           ng-show="myform.email.$invalid && myform.email.$touched">must be a valid email</p>
       </div>
 
       <div class="form-group">
-        <label for="password">password</label>
-        <input type="password" name="password" placeholder="password" id="password"
+        <label for="regPass">password</label>
+        <input type="password" name="password" placeholder="Password" class="form-control" id="regPass"
           ng-model="user.password" ng-required="true">
         <p class="error"
           ng-show="myform.password.$invalid && myform.password.$touched">password is required</p>
       </div>
 
       <div class="form-group">
-        <label for="confirm">confirm password</label>
-        <input type="password" name="confirm" placeholder="password" id="confirm"
+        <label for="regConfirm">confirm password</label>
+        <input type="password" name="confirm" placeholder="Confirm password" class="form-control" id="regConfirm"
           ng-model="user.confirm" ng-required="true" compare-to="user.password">
         <p class="error"
           ng-show="myform.confirm.$invalid && myform.confirm.$touched">passwords do not match</p>
       </div>
 
       <button type="submit" class="btn btn-primary"
-        ng-disabled="myform.$invalid">Register</button>
+        ng-disabled="myform.$invalid">Sign Up</button>
+      <p>or <a href="#/login">login</a></p>
     </form>
   </div>
 </div>

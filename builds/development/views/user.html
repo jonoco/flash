@@ -3,12 +3,17 @@
 	<div class="user">
 		<div class="user-topbox box">
 			<h2>make a new stack</h2>
-			<form class="stack-form" name="myform" 
-						ng-submit="addStack()" novalidate>
-				<input type="text" name="stackName" placeholder="stack name" 
-								ng-model="stackName" ng-required="true">
-				<button class="btn btn-default" type="submit"
-								ng-disabled="myform.$invalid">make stack</button>
+			<form name="myform" 
+				ng-submit="addStack()" novalidate>
+				<div class="input-group make-stack">
+					<input type="text" name="stackName" placeholder="stack name" class="form-control" 
+						ng-model="stackName" 
+						ng-required="true">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="submit"
+							ng-disabled="myform.$invalid">make stack</button>	
+					</span>
+				</div><!-- input-group -->
 			</form>		
 		</div><!-- user-topbox -->
 

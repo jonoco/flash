@@ -8,8 +8,8 @@ function($scope, $firebaseObject, $location, $routeParams, FIREBASE_URL) {
 	
 	if ($routeParams.cId !== 'undefined'){
 		$scope.cardId = $routeParams.cId;
-		var cardRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards/' + $scope.cardId);
-		cardObj = $firebaseObject(ref);
+		var editRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards/' + $scope.cardId);
+		cardObj = $firebaseObject(editRef);
 
 		cardObj.$loaded(function() {
 			$scope.card = cardObj;
@@ -28,8 +28,8 @@ function($scope, $firebaseObject, $location, $routeParams, FIREBASE_URL) {
 			date: Firebase.ServerValue.TIMESTAMP
 		};
 
-		cardRef.set(myData, function() {
-	    $location.path('/user');
+		editRef.set(myData, function() {
+	    $location.path('/stack/' + $scope.stackId);
 	  });
 	} //editCard
 

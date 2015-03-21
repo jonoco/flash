@@ -1,0 +1,146 @@
+@import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
+ol, ul {
+  list-style: none; }
+
+body {
+  padding-top: 70px;
+  font: 100% Merriweather, serif;
+  font-size: 1rem; }
+
+h1, h2, h3, h4, h5, h6 {
+  color: #475b62;
+  text-shadow: 1px 1px white; }
+
+input {
+  color: #475B62;
+  background: white;
+  border: 1px solid white;
+  border-radius: 10px;
+  outline: 0;
+  padding: 4px; }
+
+.error {
+  color: #D11404; }
+
+.ng-dirty.ng-invalid {
+  border-color: #D11404; }
+
+.ng-dirty.ng-valid {
+  border-color: #21D153; }
+
+.alert {
+  margin-top: 10px; }
+  .alert a {
+    margin-left: 20px; }
+
+.jumbotron {
+  width: 800px;
+  margin: 0 auto;
+  text-align: center; }
+  .jumbotron span {
+    font-size: 1.4rem; }
+
+.box, .stack, .edit-content, .edit-answer, .register {
+  background-color: rgba(240, 240, 240, 0.8);
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 3px;
+  margin: 10px auto; }
+
+.btn:hover {
+  background-color: #919191;
+  border-radius: 6px; }
+
+.navbar {
+  background-color: #B3E5FC; }
+
+.nav-guests li {
+  float: right; }
+
+/*
+ * Page styles
+ */
+.user-topbox {
+  padding: 5px; }
+
+.user-stacks {
+  padding-bottom: 10px; }
+  .user-stacks .btn {
+    margin-top: 8px;
+    margin-right: 5px;
+    float: right; }
+
+.make-stack {
+  width: 60%;
+  margin: 0 auto; }
+
+.stack {
+  background-color: rgba(200, 200, 200, 0.8);
+  padding: 0 15px;
+  height: 50px;
+  width: 70%; }
+
+.stack-top {
+  margin-bottom: 10px;
+  padding-bottom: 10px; }
+
+.stack-bottom {
+  padding-bottom: 35px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 10px; }
+
+.card-list {
+  margin-bottom: 8px;
+  min-width: 300px;
+  font-size: 1.6em;
+  clear: both; }
+
+.message {
+  padding: 5px;
+  text-align: center;
+  font-size: 1.4rem;
+  color: #338833; }
+
+.edit-content {
+  min-height: 400px;
+  padding: 10px; }
+  .edit-content input {
+    width: 200px; }
+  .edit-content img {
+    height: 300px; }
+
+.edit-answer {
+  height: 400px;
+  padding: 10px; }
+  .edit-answer input {
+    margin-bottom: 10px; }
+
+.login, .register {
+  padding: 10px; }
+  .login button, .register button {
+    margin-bottom: 12px; }
+  .login input, .register input {
+    width: 50%;
+    margin: 5px auto; }
+
+.card-memory {
+  text-align: center;
+  padding: 10px; }
+  .card-memory h2 {
+    color: green; }
+  .card-memory img {
+    border-radius: 6px;
+    max-height: 300px; }
+
+.card-answer {
+  text-align: center;
+  border-radius: 6px;
+  box-shadow: 3px; }
+  .card-answer input {
+    border: none;
+    margin-top: 15px;
+    margin-bottom: 15px; }
+
+.controls button {
+  margin: 0 150px; }

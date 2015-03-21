@@ -3,11 +3,11 @@
 @import 'reset';
 
 $font-stack: Merriweather, serif;
-$primary-color: #FFC107;
-$light-accent: #FFECB3;
-$dark-accent: #FF6F00;
+$primary-color: #03A9F4;
+$primary-color-light: #B3E5FC;
+$primary-color-dark: #0288D1;
 
-/* Base Styles */
+// Base Styles
 
 body {
   padding-top: 70px;
@@ -29,7 +29,7 @@ input {
   padding: 4px;
 }
 
-/* Alert and Error styles */
+// Alert and Error styles
 
 .error {
   color: #D11404;
@@ -45,11 +45,10 @@ input {
 
 .alert {
   margin-top: 10px;
-
   a { margin-left: 20px; }
 }
 
-/* Container styles */
+// Container styles
 
 .jumbotron {
   width: 800px;
@@ -67,41 +66,40 @@ input {
   margin: 10px auto;
 }
 
-/* Buttons */
+// Buttons
 
 .btn:hover { 
-  background-color: #66CCFF;
-}
+  background-color: lighten(#000000, 57%);
+  border-radius: 6px;
+ }
 
-/* Navbar */
+// Navbar
 
-.nav-guests li {
-  float: right;
-}
+.navbar { background-color: $primary-color-light; }
+
+.nav-guests li { float: right; }
 
 /*
  * Page styles
  */
 
-/* User page */
+// User page
 
-.user-topbox {
-  padding: 5px;
-}
+.user-topbox { padding: 5px; }
 
 .user-stacks {
   padding-bottom: 10px;
 
 	.btn { 
-  margin-top: 8px;
-  margin-right: 5px;
-  float: right;
+    margin-top: 8px;
+    margin-right: 5px;
+    float: right;
 	}
 }
 
-.stack-form input {
-  font-size: 1.2rem;
-  width: 300px;
+.make-stack { 
+  width: 60%;
+  margin: 0 auto;
 }
 
 .stack {
@@ -112,7 +110,7 @@ input {
   width: 70%;
 }
 
-/* Stack page */
+// Stack page
 
 .stack-top {
   margin-bottom: 10px;
@@ -133,7 +131,7 @@ input {
   clear: both;
 }
 
-/* Card editing page */
+// Card editing page
 
 .message {
   padding: 5px;
@@ -159,14 +157,26 @@ input {
   input { margin-bottom: 10px; }
 }
 
-/* Register page */
+// Register page
 
 .register {
-	input { width: 300px; }
-	label { width: 80px; }
+  @extend .box;
+  @extend .login;
 }
 
-/* Review page */
+// Login page
+
+.login {
+  padding: 10px;
+
+  button { margin-bottom: 12px; }
+  input { 
+    width: 50%;
+    margin: 5px auto;
+  }
+}
+
+// Review page
 
 .card-memory {
   text-align: center;
@@ -174,7 +184,7 @@ input {
 
   h2 { color: green; }
   img {
-  	@extend .img-rounded;
+    border-radius: 6px;
   	max-height: 300px;
   }
 }
@@ -192,6 +202,6 @@ input {
 
 }
 
-.controls button { margin: 0 200px; }
+.controls button { margin: 0 150px; }
 
 
