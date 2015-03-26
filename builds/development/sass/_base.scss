@@ -1,0 +1,19 @@
+body {
+  padding-top: 70px;
+  font: 100% $font-stack;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #475b62;
+  text-shadow: 1px 1px rgba(255,255,255, 1);
+}
+
+input {
+  color: #475B62;
+  background: rgba(255,255,255,1);
+  border: 1px solid white;
+  border-radius: 10px;
+  outline: 0;
+  padding: 4px;
+}

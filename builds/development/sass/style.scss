@@ -1,33 +1,8 @@
 @import url("http://fonts.googleapis.com/css?family=Bree+Serif|Merriweather:400,300,700,900|Droid+Sans:400,700");
 
 @import 'reset';
-
-$font-stack: Merriweather, serif;
-$primary-color: #03A9F4;
-$primary-color-light: #B3E5FC;
-$primary-color-dark: #0288D1;
-
-// Base Styles
-
-body {
-  padding-top: 70px;
-  font: 100% $font-stack;
-  font-size: 1rem;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  color: #475b62;
-  text-shadow: 1px 1px rgba(255,255,255, 1);
-}
-
-input {
-  color: #475B62;
-  background: rgba(255,255,255,1);
-  border: 1px solid white;
-  border-radius: 10px;
-  outline: 0;
-  padding: 4px;
-}
+@import 'variables';
+@import 'base';
 
 // Alert and Error styles
 
@@ -54,7 +29,6 @@ input {
   width: 800px;
   margin: 0 auto;
   text-align: center;
-
   span { font-size: 1.4rem; }
 }
 
@@ -75,7 +49,7 @@ input {
 
 // Navbar
 
-.navbar { background-color: $primary-color-light; }
+.navbar { background-color: $color-light; }
 
 .nav-guests li { float: right; }
 
@@ -179,9 +153,8 @@ input {
 // Review page
 
 .card-memory {
-  text-align: center;
+  @extend .box;
   padding: 10px;
-
   h2 { color: green; }
   img {
     border-radius: 6px;
@@ -190,18 +163,13 @@ input {
 }
 
 .card-answer {
-  text-align: center;
-  border-radius: 6px;
-  box-shadow: 3px;
-
+  @extend .box;
+  padding: 10px;
   input {
 	  border: none;
-	  margin-top: 15px;
 	  margin-bottom: 15px;
 	}
-
 }
 
-.controls button { margin: 0 150px; }
 
 

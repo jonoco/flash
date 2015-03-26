@@ -40,7 +40,7 @@ input {
   .jumbotron span {
     font-size: 1.4rem; }
 
-.box, .stack, .edit-content, .edit-answer, .register {
+.box, .stack, .edit-content, .edit-answer, .register, .card-memory, .card-answer {
   background-color: rgba(240, 240, 240, 0.8);
   text-align: center;
   border-radius: 6px;
@@ -125,7 +125,6 @@ input {
     margin: 5px auto; }
 
 .card-memory {
-  text-align: center;
   padding: 10px; }
   .card-memory h2 {
     color: green; }
@@ -134,13 +133,7 @@ input {
     max-height: 300px; }
 
 .card-answer {
-  text-align: center;
-  border-radius: 6px;
-  box-shadow: 3px; }
+  padding: 10px; }
   .card-answer input {
     border: none;
-    margin-top: 15px;
     margin-bottom: 15px; }
-
-.controls button {
-  margin: 0 150px; }
