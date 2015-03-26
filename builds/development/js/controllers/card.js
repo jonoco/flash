@@ -9,7 +9,7 @@ function($scope, $firebaseObject, $location, $routeParams, FIREBASE_URL) {
 	if ($routeParams.cId !== 'undefined'){
 		$scope.cardId = $routeParams.cId;
 		var editRef = new Firebase(FIREBASE_URL + '/stacks/' + $scope.stackId + '/cards/' + $scope.cardId);
-		cardObj = $firebaseObject(editRef);
+		var cardObj = $firebaseObject(editRef);
 
 		cardObj.$loaded(function() {
 			$scope.card = cardObj;
@@ -31,7 +31,7 @@ function($scope, $firebaseObject, $location, $routeParams, FIREBASE_URL) {
 		editRef.set(myData, function() {
 	    $location.path('/stack/' + $scope.stackId);
 	  });
-	} //editCard
+	}; //editCard
 
 	$scope.addCard = function() {
 		if (!$scope.card.image) {
@@ -52,7 +52,7 @@ function($scope, $firebaseObject, $location, $routeParams, FIREBASE_URL) {
     	$scope.message = 'card added';
     	$scope.$apply();
 	  });
-	}// addCard
+	};// addCard
 	 
 
 });

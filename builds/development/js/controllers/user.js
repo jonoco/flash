@@ -28,7 +28,7 @@ myApp.controller('UserController',
       });
     } // addstack
 	} else {
-    $location.path('/welcome')
+    $location.path('/')
   } // check authentication
 
 });

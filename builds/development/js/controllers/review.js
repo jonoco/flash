@@ -36,20 +36,19 @@ myApp.controller('ReviewController',
 		}, 250);
 	}); // call check user answer
 
-	$scope.prevCard = function() {
-		$scope.current--;
-	}
-
 	$scope.nextCard = function() {
 		$scope.current++;
 	}
 
 	$scope.giveUp = function() {
 		showAnswer();
-	}
+	}// giveUp
 
 	var showAnswer = function() {
 		$scope.card.show = true;
+		$timeout(function() {
+			$scope.nextCard();
+		}, 6000);
 	}
 
 	var checkAnswer = function() {
@@ -60,9 +59,6 @@ myApp.controller('ReviewController',
 
 	var correctAnswer = function() {
 		showAnswer();
-		$timeout(function() {
-			$scope.nextCard();
-		}, 3000);
 	} //correctAnswer
 
 	var reset = function() {
